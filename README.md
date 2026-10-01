@@ -10,4 +10,7 @@ Dirección del Fork:
 La confirmación de puesta en funcionamiento:
 	8569667cf4f46fab640dba3f82a7b324ca7efaf7
 Enlaces a los issues de las propuestas:
-
+	-Funes:
+		**[Sectores económicos afectados](https://github.com/RobertoFunes/Pr-ctica02/issues/3)**
+		**[Vulnerabilidad de servicios públicos indispensables](https://github.com/RobertoFunes/Pr-ctica02/issues/4)**
+		**[Detección temprana de riesgos](https://github.com/RobertoFunes/Pr-ctica02/issues/5)**
