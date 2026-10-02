@@ -14,3 +14,7 @@ Enlaces a los issues de las propuestas:
 		**[Sectores económicos afectados](https://github.com/RobertoFunes/Pr-ctica02/issues/3)**
 		**[Vulnerabilidad de servicios públicos indispensables](https://github.com/RobertoFunes/Pr-ctica02/issues/4)**
 		**[Detección temprana de riesgos](https://github.com/RobertoFunes/Pr-ctica02/issues/5)**
+	Martínez:
+		**[Uso de censos de población de acuerdo a la época.](https://github.com/RobertoFunes/Pr-ctica02/issues/6)**
+		**[Actualización automática de datos](https://github.com/RobertoFunes/Pr-ctica02/issues/7)**
+		**[Ampliar las dimensiones del datawarehouse](https://github.com/RobertoFunes/Pr-ctica02/issues/8)**
