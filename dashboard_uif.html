@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Consulta de Inteligencia Financiera - UIF</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gob: {
+                            guinda: '#691C32',
+                            guindaDark: '#4E1424',
+                            oro: '#BC955C',
+                            orolight: '#DDD2B8',
+                            gris: '#6F7271',
+                            grisClaro: '#F8F9FA'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .active-tab {
+            border-bottom: 3px solid #691C32;
+            color: #691C32;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans min-h-screen flex flex-col">
+
+    <!-- ENCABEZADO OFICIAL INSTITUCIONAL -->
+    <header class="bg-gob-guinda text-white shadow-md border-b-4 border-gob-oro">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col md:flex-row items-center justify-between gap-4">
+            
+            <!-- Extremo Izquierdo: SHCP -->
+            <div class="flex items-center space-x-3 text-center md:text-left">
+                <div class="border-l-2 border-gob-oro pl-3">
+                    <p class="text-xs tracking-wider text-gob-orolight font-medium uppercase">Gobierno de México</p>
+                    <h1 class="text-sm md:text-base font-bold leading-tight">Secretaría de Hacienda y Crédito Público</h1>
+                </div>
+            </div>
+
+            <!-- Centro: Escudo y Siglas UIF -->
+            <div class="flex items-center space-x-3 my-2 md:my-0 bg-gob-guindaDark px-4 py-2 rounded-lg border border-gob-oro/30">
+                <!-- Emblem / Emblem / Logo SVG UIF -->
+                <div class="w-10 h-10 bg-gob-oro rounded-full flex items-center justify-center font-bold text-gob-guinda text-xl shadow">
+                    <svg class="w-6 h-6 text-gob-guinda" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-5.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8Messz"/>
+                    </svg>
+                </div>
+                <div>
+                    <div class="flex items-center space-x-2">
+                        <span class="text-xl font-extrabold text-white tracking-widest">UIF</span>
+                        <span class="text-xs bg-gob-oro text-gob-guinda font-bold px-1.5 py-0.5 rounded">MX</span>
+                    </div>
+                    <p class="text-xs text-gray-200 font-light">Unidad de Inteligencia Financiera</p>
+                </div>
+            </div>
+
+            <!-- Extremo Derecho: Escudo de México Estilizado -->
+            <div class="flex items-center space-x-2">
+                <div class="text-right hidden sm:block">
+                    <p class="text-xs font-semibold text-gob-orolight">ESTADOS UNIDOS MEXICANOS</p>
+                    <p class="text-[10px] text-gray-300">Sistema de Consulta EER</p>
+                </div>
+                <!-- Escudo de México representación Vectorial -->
+                <div class="w-10 h-10 rounded-full border border-gob-oro/50 flex items-center justify-center p-1 bg-white/10">
+                    <svg class="w-8 h-8 text-gob-oro" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v12m-4-8l4-4 4 4m-8 6l4-4 4 4" />
+                    </svg>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- BANNER DE TITULO -->
+    <section class="bg-white border-b border-gray-200 py-3 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center text-sm">
+            <h2 class="text-base font-bold text-gob-guinda flex items-center gap-2">
+                <svg class="w-5 h-5 text-gob-oro" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                </svg>
+                Plataforma de Consulta y Monitoreo Financiero
+            </h2>
+            <span class="text-xs text-gray-500 mt-1 sm:mt-0">Estado del Sistema: <span class="inline-block w-2 h-2 rounded-full bg-green-500 mr-1"></span> En línea</span>
+        </div>
+    </section>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="max-w-7xl mx-auto px-4 py-6 flex-grow w-full">
+
+        <!-- TARJETAS DE MÉTRICAS RÁPIDAS -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+            <div class="bg-white rounded-lg p-4 shadow-sm border-l-4 border-gob-guinda flex items-center justify-between">
+                <div>
+                    <p class="text-xs font-semibold uppercase text-gray-500">Reportes Registrados</p>
+                    <h3 class="text-2xl font-bold text-gray-800 mt-1" id="totalReportes">1,428</h3>
+                </div>
+                <div class="p-3 bg-red-50 text-gob-guinda rounded-full">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg p-4 shadow-sm border-l-4 border-gob-oro flex items-center justify-between">
+                <div>
+                    <p class="text-xs font-semibold uppercase text-gray-500">Personas Físicas</p>
+                    <h3 class="text-2xl font-bold text-gray-800 mt-1" id="totalFisicas">854</h3>
+                </div>
+                <div class="p-3 bg-amber-50 text-gob-oro rounded-full">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg p-4 shadow-sm border-l-4 border-blue-600 flex items-center justify-between">
+                <div>
+                    <p class="text-xs font-semibold uppercase text-gray-500">Personas Morales</p>
+                    <h3 class="text-2xl font-bold text-gray-800 mt-1" id="totalMorales">312</h3>
+                </div>
+                <div class="p-3 bg-blue-50 text-blue-600 rounded-full">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg p-4 shadow-sm border-l-4 border-emerald-600 flex items-center justify-between">
+                <div>
+                    <p class="text-xs font-semibold uppercase text-gray-500">Sujetos Obligados</p>
+                    <h3 class="text-2xl font-bold text-gray-800 mt-1" id="totalSO">145</h3>
+                </div>
+                <div class="p-3 bg-emerald-50 text-emerald-600 rounded-full">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"></path></svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- BARRA DE PESTAÑAS Y BÚSQUEDA GLOBAL -->
+        <div class="bg-white rounded-t-lg shadow-sm border-b border-gray-200 p-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            
+            <!-- Pestañas de Navegación -->
+            <nav class="flex space-x-6 w-full md:w-auto overflow-x-auto text-sm font-medium">
+                <button onclick="switchTab('reportes')" id="tab-reportes" class="pb-2 text-gray-500 hover:text-gob-guinda transition-colors active-tab">
+                    Reportes de Operación
+                </button>
+                <button onclick="switchTab('personas')" id="tab-personas" class="pb-2 text-gray-500 hover:text-gob-guinda transition-colors">
+                    Personas (Físicas / Morales)
+                </button>
+                <button onclick="switchTab('entidades')" id="tab-entidades" class="pb-2 text-gray-500 hover:text-gob-guinda transition-colors">
+                    Entidades Reportantes (S.O.)
+                </button>
+            </nav>
+
+            <!-- Campo de Búsqueda Rápida -->
+            <div class="relative w-full md:w-72">
+                <input type="text" id="searchInput" onkeyup="filterTables()" placeholder="Buscar folio, RFC, nombre..." class="w-full pl-9 pr-4 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gob-guinda">
+                <svg class="w-4 h-4 text-gray-400 absolute left-3 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            </div>
+        </div>
+
+        <!-- VISTAS DE CONTENIDO POR PESTAÑA -->
+
+        <!-- SECCIÓN 1: REPORTES DE INFORMES -->
+        <div id="sec-reportes" class="bg-white rounded-b-lg shadow-sm p-4">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-2">
+                <h3 class="text-base font-semibold text-gray-800">Listado de Reportes de Operaciones Recibidos</h3>
+                
+                <!-- Filtro por tipo de reporte -->
+                <div class="flex items-center space-x-2 text-xs">
+                    <span class="text-gray-500">Filtrar Tipo:</span>
+                    <select id="filterType" onchange="filterReportType()" class="border border-gray-300 rounded px-2 py-1 focus:outline-none focus:ring-1 focus:ring-gob-guinda">
+                        <option value="TODOS">Todos</option>
+                        <option value="Inusual">Inusual</option>
+                        <option value="Preocupante">Preocupante</option>
+                        <option value="Relevante">Relevante</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left text-gray-600">
+                    <thead class="text-xs uppercase bg-gray-50 text-gray-700 border-b">
+                        <tr>
+                            <th class="px-4 py-3">Folio</th>
+                            <th class="px-4 py-3">Fecha Emisión</th>
+                            <th class="px-4 py-3">Tipo Reporte</th>
+                            <th class="px-4 py-3">Sujeto Obligado</th>
+                            <th class="px-4 py-3">Monto (MXN)</th>
+                            <th class="px-4 py-3 text-center">Nivel Riesgo</th>
+                        </tr>
+                    </thead>
+                    <tbody id="body-reportes" class="divide-y divide-gray-100">
+                        <tr class="hover:bg-gray-50 search-row" data-tipo="Inusual">
+                            <td class="px-4 py-3 font-semibold text-gob-guinda">REP-2026-001</td>
+                            <td class="px-4 py-3">12/10/2026</td>
+                            <td class="px-4 py-3"><span class="bg-amber-100 text-amber-800 text-xs px-2 py-0.5 rounded-full font-medium">Inusual</span></td>
+                            <td class="px-4 py-3">BBVA México S.A.</td>
+                            <td class="px-4 py-3 font-mono">$4,250,000.00</td>
+                            <td class="px-4 py-3 text-center"><span class="bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded font-bold">Alto</span></td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 search-row" data-tipo="Relevante">
+                            <td class="px-4 py-3 font-semibold text-gob-guinda">REP-2026-002</td>
+                            <td class="px-4 py-3">11/10/2026</td>
+                            <td class="px-4 py-3"><span class="bg-blue-100 text-blue-800 text-xs px-2 py-0.5 rounded-full font-medium">Relevante</span></td>
+                            <td class="px-4 py-3">Banco Santander México</td>
+                            <td class="px-4 py-3 font-mono">$1,800,000.00</td>
+                            <td class="px-4 py-3 text-center"><span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-0.5 rounded font-bold">Medio</span></td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 search-row" data-tipo="Preocupante">
+                            <td class="px-4 py-3 font-semibold text-gob-guinda">REP-2026-003</td>
+                            <td class="px-4 py-3">09/10/2026</td>
+                            <td class="px-4 py-3"><span class="bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded-full font-medium">Preocupante</span></td>
+                            <td class="px-4 py-3">Notaría Pública No. 12 CDMX</td>
+                            <td class="px-4 py-3 font-mono">$12,500,000.00</td>
+                            <td class="px-4 py-3 text-center"><span class="bg-red-100 text-red-800 text-xs px-2 py-0.5 rounded font-bold">Alto</span></td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 search-row" data-tipo="Inusual">
+                            <td class="px-4 py-3 font-semibold text-gob-guinda">REP-2026-004</td>
+                            <td class="px-4 py-3">08/10/2026</td>
+                            <td class="px-4 py-3"><span class="bg-amber-100 text-amber-800 text-xs px-2 py-0.5 rounded-full font-medium">Inusual</span></td>
+                            <td class="px-4 py-3">Monex Casa de Bolsa</td>
+                            <td class="px-4 py-3 font-mono">$890,000.00</td>
+                            <td class="px-4 py-3 text-center"><span class="bg-green-100 text-green-800 text-xs px-2 py-0.5 rounded font-bold">Bajo</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 2: PERSONAS (FÍSICAS Y MORALES) -->
+        <div id="sec-personas" class="bg-white rounded-b-lg shadow-sm p-4 hidden">
+            <!-- Sub-pestañas para seleccionar Física o Moral -->
+            <div class="flex border-b border-gray-200 mb-4">
+                <button onclick="switchSubPersona('fisica')" id="subtab-fisica" class="py-2 px-4 text-xs sm:text-sm font-semibold border-b-2 border-gob-guinda text-gob-guinda">
+                    Personas Físicas
+                </button>
+                <button onclick="switchSubPersona('moral')" id="subtab-moral" class="py-2 px-4 text-xs sm:text-sm font-semibold text-gray-500 border-b-2 border-transparent hover:text-gob-guinda">
+                    Personas Morales
+                </button>
+            </div>
+
+            <!-- Tabla Personas Físicas -->
+            <div id="subsec-fisicas" class="overflow-x-auto">
+                <table class="w-full text-sm text-left text-gray-600">
+                    <thead class="text-xs uppercase bg-gray-50 text-gray-700 border-b">
+                        <tr>
+                            <th class="px-4 py-3">ID Persona</th>
+                            <th class="px-4 py-3">Nombre Completo</th>
+                            <th class="px-4 py-3">RFC</th>
+                            <th class="px-4 py-3">CURP</th>
+                            <th class="px-4 py-3">Teléfono</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-100">
+                        <tr class="hover:bg-gray-50 search-row">
+                            <td class="px-4 py-3 font-mono text-xs">PER-F-001</td>
+                            <td class="px-4 py-3 font-medium text-gray-800">Carlos Mendoza Hernández</td>
+                            <td class="px-4 py-3 font-mono">MEHC8205141H2</td>
+                            <td class="px-4 py-3 font-mono">MEHC820514HDFRRN09</td>
+                            <td class="px-4 py-3">+52 55 4123 9876</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 search-row">
+                            <td class="px-4 py-3 font-mono text-xs">PER-F-002</td>
+                            <td class="px-4 py-3 font-medium text-gray-800">Sofía Ramírez Villalobos</td>
+                            <td class="px-4 py-3 font-mono">RAVS901123AB4</td>
+                            <td class="px-4 py-3 font-mono">RAVS901123MDFLNN01</td>
+                            <td class="px-4 py-3">+52 81 8345 1122</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 search-row">
+                            <td class="px-4 py-3 font-mono text-xs">PER-F-003</td>
+                            <td class="px-4 py-3 font-medium text-gray-800">Alejandro Gómez Tovar</td>
+                            <td class="px-4 py-3 font-mono">GOTA7503028R1</td>
+                            <td class="px-4 py-3 font-mono">GOTA750302JCLRR03</td>
+                            <td class="px-4 py-3">+52 33 3612 0099</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Tabla Personas Morales -->
+            <div id="subsec-morales" class="overflow-x-auto hidden">
+                <table class="w-full text-sm text-left text-gray-600">
+                    <thead class="text-xs uppercase bg-gray-50 text-gray-700 border-b">
+                        <tr>
+                            <th class="px-4 py-3">ID Persona</th>
+                            <th class="px-4 py-3">Razón Social</th>
+                            <th class="px-4 py-3">RFC</th>
+                            <th class="px-4 py-3">Fecha Constitución</th>
+                            <th class="px-4 py-3">Representante Legal</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-100">
+                        <tr class="hover:bg-gray-50 search-row">
+                            <td class="px-4 py-3 font-mono text-xs">PER-M-101</td>
+                            <td class="px-4 py-3 font-medium text-gray-800">Desarrollos Inmobiliarios del Norte S.A. de C.V.</td>
+                            <td class="px-4 py-3 font-mono">DIN1508129K3</td>
+                            <td class="px-4 py-3">12/08/2015</td>
+                            <td class="px-4 py-3">Roberto Fuentes Alba</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 search-row">
+                            <td class="px-4 py-3 font-mono text-xs">PER-M-102</td>
+                            <td class="px-4 py-3 font-medium text-gray-800">Consultores Financieros Alfa S.C.</td>
+                            <td class="px-4 py-3 font-mono">CFA1902014T9</td>
+                            <td class="px-4 py-3">01/02/2019</td>
+                            <td class="px-4 py-3">Laura Castillo Rivas</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 3: ENTIDADES REPORTANTES (SUJETOS OBLIGADOS) -->
+        <div id="sec-entidades" class="bg-white rounded-b-lg shadow-sm p-4 hidden">
+            <h3 class="text-base font-semibold text-gray-800 mb-4">Sujetos Obligados / Entidades Reportantes Registradas</h3>
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left text-gray-600">
+                    <thead class="text-xs uppercase bg-gray-50 text-gray-700 border-b">
+                        <tr>
+                            <th class="px-4 py-3">Clave S.O.</th>
+                            <th class="px-4 py-3">Razón Social</th>
+                            <th class="px-4 py-3">RFC</th>
+                            <th class="px-4 py-3">Tipo de Actividad / Sector</th>
+                            <th class="px-4 py-3">Estatus</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-100">
+                        <tr class="hover:bg-gray-50 search-row">
+                            <td class="px-4 py-3 font-mono text-xs font-bold text-gob-guinda">SO-FIN-001</td>
+                            <td class="px-4 py-3 font-medium text-gray-800">BBVA México S.A. Institución de Banca Múltiple</td>
+                            <td class="px-4 py-3 font-mono">BBA830831LJ2</td>
+                            <td class="px-4 py-3"><span class="bg-blue-50 text-blue-700 text-xs px-2 py-0.5 rounded border border-blue-200">Sector Financiero - Banca</span></td>
+                            <td class="px-4 py-3"><span class="text-xs text-green-700 font-semibold">Activo</span></td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 search-row">
+                            <td class="px-4 py-3 font-mono text-xs font-bold text-gob-guinda">SO-FIN-002</td>
+                            <td class="px-4 py-3 font-medium text-gray-800">Banco Santander México S.A.</td>
+                            <td class="px-4 py-3 font-mono">BSM970519DU8</td>
+                            <td class="px-4 py-3"><span class="bg-blue-50 text-blue-700 text-xs px-2 py-0.5 rounded border border-blue-200">Sector Financiero - Banca</span></td>
+                            <td class="px-4 py-3"><span class="text-xs text-green-700 font-semibold">Activo</span></td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 search-row">
+                            <td class="px-4 py-3 font-mono text-xs font-bold text-gob-guinda">SO-VUL-045</td>
+                            <td class="px-4 py-3 font-medium text-gray-800">Notaría Pública No. 12 de la CDMX</td>
+                            <td class="px-4 py-3 font-mono">NPU8501019X1</td>
+                            <td class="px-4 py-3"><span class="bg-purple-50 text-purple-700 text-xs px-2 py-0.5 rounded border border-purple-200">Actividad Vulnerable - Fe Pública</span></td>
+                            <td class="px-4 py-3"><span class="text-xs text-green-700 font-semibold">Activo</span></td>
+                        </tr>
+                        <tr class="hover:bg-gray-50 search-row">
+                            <td class="px-4 py-3 font-mono text-xs font-bold text-gob-guinda">SO-FIN-010</td>
+                            <td class="px-4 py-3 font-medium text-gray-800">Monex Casa de Bolsa S.A. de C.V.</td>
+                            <td class="px-4 py-3 font-mono">MCB0006023R8</td>
+                            <td class="px-4 py-3"><span class="bg-blue-50 text-blue-700 text-xs px-2 py-0.5 rounded border border-blue-200">Sector Bursátil</span></td>
+                            <td class="px-4 py-3"><span class="text-xs text-green-700 font-semibold">Activo</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- PIE DE PÁGINA -->
+    <footer class="bg-gob-guindaDark text-white border-t-2 border-gob-oro mt-8 py-4">
+        <div class="max-w-7xl mx-auto px-4 text-center text-xs text-gray-300 flex flex-col sm:flex-row justify-between items-center gap-2">
+            <p>© 2026 Gobierno de México - Unidad de Inteligencia Financiera (UIF)</p>
+            <p class="text-gob-orolight">Sistema Institucional de Monitoreo y Prevención de Operaciones Ilícitas</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPT DE INTERACTIVIDAD VANILLA JS -->
+    <script>
+        // Cambiar pestañas principales
+        function switchTab(tabName) {
+            // Ocultar todas las secciones
+            document.getElementById('sec-reportes').classList.add('hidden');
+            document.getElementById('sec-personas').classList.add('hidden');
+            document.getElementById('sec-entidades').classList.add('hidden');
+
+            // Quitar clase activa de los botones
+            document.getElementById('tab-reportes').classList.remove('active-tab');
+            document.getElementById('tab-personas').classList.remove('active-tab');
+            document.getElementById('tab-entidades').classList.remove('active-tab');
+
+            // Mostrar la sección seleccionada y activar botón
+            document.getElementById('sec-' + tabName).classList.remove('hidden');
+            document.getElementById('tab-' + tabName).classList.add('active-tab');
+        }
+
+        // Cambiar subpestañas en personas
+        function switchSubPersona(subType) {
+            const subFisica = document.getElementById('subsec-fisicas');
+            const subMoral = document.getElementById('subsec-morales');
+            const btnFisica = document.getElementById('subtab-fisica');
+            const btnMoral = document.getElementById('subtab-moral');
+
+            if (subType === 'fisica') {
+                subFisica.classList.remove('hidden');
+                subMoral.classList.add('hidden');
+
+                btnFisica.className = "py-2 px-4 text-xs sm:text-sm font-semibold border-b-2 border-gob-guinda text-gob-guinda";
+                btnMoral.className = "py-2 px-4 text-xs sm:text-sm font-semibold text-gray-500 border-b-2 border-transparent hover:text-gob-guinda";
+            } else {
+                subFisica.classList.add('hidden');
+                subMoral.classList.remove('hidden');
+
+                btnMoral.className = "py-2 px-4 text-xs sm:text-sm font-semibold border-b-2 border-gob-guinda text-gob-guinda";
+                btnFisica.className = "py-2 px-4 text-xs sm:text-sm font-semibold text-gray-500 border-b-2 border-transparent hover:text-gob-guinda";
+            }
+        }
+
+        // Filtro de busqueda global por texto
+        function filterTables() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const rows = document.querySelectorAll('.search-row');
+
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                if (text.includes(query)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        // Filtro especifico por tipo de reporte
+        function filterReportType() {
+            const selectedType = document.getElementById('filterType').value;
+            const rows = document.querySelectorAll('#body-reportes tr');
+
+            rows.forEach(row => {
+                const tipo = row.getAttribute('data-tipo');
+                if (selectedType === 'TODOS' || tipo === selectedType) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
